@@ -1,4 +1,4 @@
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Converter {
@@ -9,13 +9,12 @@ public class Converter {
         System.out.println("Enter a number: ");
         int num = scan.nextInt();
 
-        System.out.println("Enter an input number system: ");
+        System.out.println("Enter an input number system(2-10): ");
         int numSystem = scan.nextInt();
 
-        System.out.println("Enter an output number system: ");
-        int desNumSystem = scan.nextInt();
+        System.out.println("Enter an output number system(2-10): ");
+        int finalNumSystem = scan.nextInt();
 
-        System.out.println(toDecimal(num, numSystem));
     }
 
     public static int toDecimal(int num, int numSystem) {
@@ -38,5 +37,19 @@ public class Converter {
 
             return decNum;
         }
+    }
+
+    public static int fromDecimal(int decNum, int finalNumSystem) {
+
+        int finalNum = 0;
+        ArrayList<Integer> finalNumArr = new ArrayList<Integer>();
+        int remain = decNum;
+        while (remain > 0) {
+            finalNumArr.add(remain % finalNumSystem);
+            remain /= finalNumSystem;
+        }
+
+
+        return 0;
     }
 }
