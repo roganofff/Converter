@@ -15,6 +15,8 @@ public class Converter {
         System.out.println("Enter an output number system(2-10): ");
         int finalNumSystem = scan.nextInt();
 
+        System.out.println(fromDecimal(toDecimal(num, numSystem), finalNumSystem));
+
     }
 
     public static int toDecimal(int num, int numSystem) {
@@ -42,13 +44,17 @@ public class Converter {
     public static int fromDecimal(int decNum, int finalNumSystem) {
 
         int finalNum = 0;
-        ArrayList<Integer> finalNumArr = new ArrayList<Integer>();
+        ArrayList<Integer> finalNumArr = new ArrayList<>();
         int remain = decNum;
         while (remain > 0) {
             finalNumArr.add(remain % finalNumSystem);
             remain /= finalNumSystem;
         }
 
-        return 0;
+        for (int i = finalNumArr.size() - 1; i >= 0; i--) {
+            finalNum += finalNumArr.get(i) * Math.pow(10, i);
+        }
+
+        return finalNum;
     }
 }
