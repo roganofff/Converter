@@ -49,7 +49,6 @@ public class Converter {
             remain /= finalNumSystem;
         }
 
-
         return 0;
     }
 }
