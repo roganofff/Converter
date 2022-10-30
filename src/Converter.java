@@ -6,16 +6,26 @@ public class Converter {
     public static void main(String[] args) {
 
         Scanner scan = new Scanner(System.in);
-        System.out.println("Enter a number: ");
+        System.out.print("Enter a number: ");
         int num = scan.nextInt();
 
-        System.out.println("Enter an input number system(2-10): ");
+        System.out.print("\nEnter an input number system(2-10): ");
         int numSystem = scan.nextInt();
 
-        System.out.println("Enter an output number system(2-10): ");
+        System.out.print("\nEnter an output number system(2-10): ");
         int finalNumSystem = scan.nextInt();
 
-        System.out.println(fromDecimal(toDecimal(num, numSystem), finalNumSystem));
+        System.out.print("\nEnter a number of character: ");
+        int charNum = scan.nextInt();
+
+        System.out.println("\nEnter using characters: ");
+        int[] charArr = new int[charNum];
+        for (int i = 0; i < charNum; i++) {
+            System.out.printf("Char #%s: ", i + 1);
+            charArr[i] = scan.nextInt();
+        }
+
+        System.out.printf("\nNum %s(%s) in (%s) numeral system -> %s", num, numSystem, finalNumSystem, fromDecimal(toDecimal(num, numSystem), finalNumSystem));
 
     }
 
