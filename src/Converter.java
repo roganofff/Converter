@@ -10,28 +10,28 @@ public class Converter {
         int num = scan.nextInt();
 
         System.out.print("\nEnter an input number system(2-10): ");
-        int numSystem = scan.nextInt();
+        int inputNumSystem = scan.nextInt();
 
         System.out.print("\nEnter an output number system(2-10): ");
-        int finalNumSystem = scan.nextInt();
+        int outputNumSystem = scan.nextInt();
 
         System.out.print("\nEnter a number of character: ");
         int charNum = scan.nextInt();
 
         System.out.println("\nEnter using characters: ");
-        int[] charArr = new int[charNum];
+        String[] charArr = new String[charNum];
         for (int i = 0; i < charNum; i++) {
             System.out.printf("Char #%s: ", i + 1);
-            charArr[i] = scan.nextInt();
+            charArr[i] = scan.nextLine();
         }
+        ArrayList<Integer> finalNumArr = new ArrayList<>();
 
-        System.out.printf("\nNum %s(%s) in (%s) numeral system -> %s", num, numSystem, finalNumSystem, fromDecimal(toDecimal(num, numSystem), finalNumSystem));
-
+        System.out.printf("\nNum %s(%s) in (%s) numeral system -> %s", num, inputNumSystem, outputNumSystem, fromDecimal(toDecimal(num, inputNumSystem), outputNumSystem, finalNumArr));
     }
 
-    public static int toDecimal(int num, int numSystem) {
+    public static int toDecimal(int num, int inputNumSystem) {
 
-        if (numSystem == 10) return num;
+        if (inputNumSystem == 10) return num;
         else {
             int decNum = 0;
 
@@ -43,7 +43,7 @@ public class Converter {
 
             int count = temp.length() - 1;
             for (int i = 0; i < temp.length(); i++) {
-                decNum += decNumArr[i] * Math.pow(numSystem, count);
+                decNum += decNumArr[i] * Math.pow(inputNumSystem, count);
                 count--;
             }
 
@@ -51,14 +51,14 @@ public class Converter {
         }
     }
 
-    public static int fromDecimal(int decNum, int finalNumSystem) {
+    public static int fromDecimal(int decNum, int outputNumSystem, ArrayList<Integer> finalNumArr) {
 
         int finalNum = 0;
-        ArrayList<Integer> finalNumArr = new ArrayList<>();
+
         int remain = decNum;
         while (remain > 0) {
-            finalNumArr.add(remain % finalNumSystem);
-            remain /= finalNumSystem;
+            finalNumArr.add(remain % outputNumSystem);
+            remain /= outputNumSystem;
         }
 
         for (int i = finalNumArr.size() - 1; i >= 0; i--) {
@@ -66,5 +66,16 @@ public class Converter {
         }
 
         return finalNum;
+    }
+
+    public static String buildWord(int charNum, String[] charArr, ArrayList<Integer> finalNumArr) {
+
+        StringBuffer word = new StringBuffer("");
+
+        for (int i = finalNumArr.size(); i >= 0; i--) {
+            word = word.append(charArr[finalNumArr.get(i)]);
+        }
+
+        return word.toString();
     }
 }
