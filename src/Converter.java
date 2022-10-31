@@ -5,6 +5,7 @@ public class Converter {
 
     public static void main(String[] args) {
 
+        //Collecting the data we need
         Scanner scan = new Scanner(System.in);
         System.out.print("Enter a number: ");
         int num = scan.nextInt();
@@ -29,6 +30,7 @@ public class Converter {
         System.out.printf("\nNum %s(%s) in (%s) numeral system -> %s", num, inputNumSystem, outputNumSystem, fromDecimal(toDecimal(num, inputNumSystem), outputNumSystem, finalNumArr));
     }
 
+    //Converting input number to decimal number system
     public static int toDecimal(int num, int inputNumSystem) {
 
         if (inputNumSystem == 10) return num;
@@ -51,6 +53,7 @@ public class Converter {
         }
     }
 
+    //Converting number from decimal to output number system
     public static int fromDecimal(int decNum, int outputNumSystem, ArrayList<Integer> finalNumArr) {
 
         int finalNum = 0;
@@ -68,6 +71,7 @@ public class Converter {
         return finalNum;
     }
 
+    //Building a final word
     public static String buildWord(int charNum, String[] charArr, ArrayList<Integer> finalNumArr) {
 
         StringBuffer word = new StringBuffer("");
